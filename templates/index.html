@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Accueil - {{ super() }}{% endblock %}
+
+{% block content %}
+    <h2>Mes Adresses</h2>
+    <div class="toolbar">
+        <a href="{{ url_for('new_address') }}" class="button button-primary">Ajouter une nouvelle adresse</a>
+    </div>
+
+    {% if addresses %}
+        <ul class="address-list">
+        {% for address in addresses %}
+            <li><a href="{{ url_for('show_address', address_id=address.id) }}">{{ address.name }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <div class="card empty-state">
+            <p>Aucune adresse n'a encore été enregistrée.</p>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Modifier Boîte - {{ address_name }} - {{ super() }}{% endblock %}
+
+{% block content %}
+    <div class="toolbar">
+        <a href="{{ url_for('show_address', address_id=address_id) }}" class="button button-secondary">&larr; Annuler</a>
+    </div>
+
+    <h2>Modifier Boîte pour {{ building_name }} - "{{ address_name }}"</h2>
+
+    {% if error %}
+        <p class="error-message">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST" class="form-container">
+        <div class="form-group">
+            <label for="mailbox_number">Numéro de Boîte (laisser vide si non numérotée) :</label>
+            <input type="text" id="mailbox_number" name="mailbox_number" value="{{ mailbox.numero if mailbox.numero is not none else '' }}">
+        </div>
+        <div class="form-group">
+            <label for="residents">Résidents (un nom par ligne) :</label>
+            <textarea id="residents" name="residents" rows="5">{{ mailbox.residents_str }}</textarea>
+        </div>
+        <button type="submit" class="button button-primary">Enregistrer les modifications</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}{{ address.adresse_complete }} - {{ super() }}{% endblock %}
+
+{% block content %}
+    <div class="toolbar">
+        <a href="{{ url_for('index') }}" class="button button-secondary">&larr; Retour à la liste</a>
+        <div class="button-group">
+            <a href="{{ url_for('new_building', address_id=address_id) }}" class="button button-primary">Ajouter un bâtiment</a>
+            <a href="{{ url_for('edit_address', address_id=address_id) }}" class="button button-secondary">Modifier l'adresse</a>
+            <a href="{{ url_for('export_address', address_id=address_id) }}" class="button button-primary">Exporter</a>
+            <a href="{{ url_for('address_history', address_id=address_id) }}" class="button button-secondary">Historique</a>
+            <form action="{{ url_for('delete_address', address_id=address_id) }}" method="POST" style="display:inline;">
+                <button type="submit" class="button button-danger" onclick="return confirm('ATTENTION : Êtes-vous sûr de vouloir supprimer cette adresse et TOUT son historique ? Cette action est irréversible.');">Supprimer l'adresse</button>
+            </form>
+        </div>
+    </div>
+
+    <h2>{{ address.adresse_complete }}</h2>
+
+    <div class="buildings-grid">
+    {% for batiment in address.batiments %}
+        <div class="card building-card">
+            <div class="toolbar-small">
+                <h3>Bâtiment {{ batiment.nom }}</h3>
+                <div class="button-group">
+                    <a href="{{ url_for('edit_building', address_id=address_id, building_name=batiment.nom) }}" class="button button-small button-secondary">Modifier</a>
+                    <div class="building-actions-on-hover">
+                        <form action="{{ url_for('delete_building', address_id=address_id, building_name=batiment.nom) }}" method="POST" style="display:inline;">
+                            <button type="submit" class="button button-small button-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce bâtiment et toutes ses boîtes aux lettres ?');">Supprimer</button>
+                        </form>
+                        <a href="{{ url_for('new_mailbox', address_id=address_id, building_name=batiment.nom) }}" class="button button-small button-secondary">Ajouter une boîte</a>
+                        <a href="{{ url_for('bulk_add_mailboxes', address_id=address_id, building_name=batiment.nom) }}" class="button button-small button-primary">Ajouter plusieurs</a>
+                    </div>
+                </div>
+            </div>
+            <ul class="mailbox-list">
+                {% for boite in batiment.boites %}
+                <li>
+                    <div class="mailbox-info-and-actions">
+                        <strong>
+                            {% if boite.numero %}
+                                Boîte n°{{ boite.numero }}:
+                            {% else %}
+                                Boîte non numérotée:
+                            {% endif %}
+                        </strong>
+                        <div class="mailbox-actions">
+                            <a href="{{ url_for('edit_mailbox', address_id=address_id, building_name=batiment.nom, mailbox_index=loop.index0) }}" class="button button-small button-tertiary mailbox-action-button">Modifier</a>
+                            <form action="{{ url_for('delete_mailbox', address_id=address_id, building_name=batiment.nom, mailbox_index=loop.index0) }}" method="POST" style="display:inline;">
+                                <button type="submit" class="button button-small button-danger mailbox-action-button" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette boîte aux lettres ?');">Supprimer</button>
+                            </form>
+                        </div>
+                    </div>
+                    <ul class="resident-list">
+                    {% for resident in boite.residents %}
+                        <li>{{ resident }}</li>
+                    {% else %}
+                        <li class="empty-resident"><i>(vide)</i></li>
+                    {% endfor %}
+                    </ul>
+                </li>
+                {% else %}
+                <p class="empty-state-small">Aucune boîte aux lettres pour ce bâtiment.</p>
+                <div class="button-group">
+                     <a href="{{ url_for('new_mailbox', address_id=address_id, building_name=batiment.nom) }}" class="button button-small button-secondary">Ajouter une boîte</a>
+                    <a href="{{ url_for('bulk_add_mailboxes', address_id=address_id, building_name=batiment.nom) }}" class="button button-small button-primary">Ajouter plusieurs</a>
+                </div>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <div class="card empty-state">
+            <p>Aucun bâtiment n'a encore été ajouté pour cette adresse.</p>
+            <p><a href="{{ url_for('new_building', address_id=address_id) }}" class="button button-primary">Ajouter un bâtiment</a></p>
+        </div>
+    {% endfor %}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Modifier Bâtiment {{ building_name }} - {{ super() }}{% endblock %}
+
+{% block content %}
+    <div class="toolbar">
+        <a href="{{ url_for('show_address', address_id=address_id) }}" class="button button-secondary">&larr; Annuler</a>
+    </div>
+
+    <h2>Modifier Bâtiment {{ building_name }} pour l'adresse "{{ address_name }}"</h2>
+
+    {% if error %}
+        <p class="error-message">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST" class="form-container">
+        <div class="form-group">
+            <label for="building_name">Nom du Bâtiment :</label>
+            <input type="text" id="building_name" name="building_name" value="{{ building_name }}" required>
+        </div>
+        <div class="form-group">
+            <label for="mailboxes_data">Boîtes aux lettres (une par ligne, format: [numéro]: [résident1], [résident2]...) :</label>
+            <textarea id="mailboxes_data" name="mailboxes_data" rows="10">{{ mailboxes_data_str }}</textarea>
+            <small>Exemples: <br> 1: Dupont <br> : Martin, Durand (pour boîte non numérotée)</small>
+        </div>
+        <button type="submit" class="button button-primary">Enregistrer les modifications</button>
+    </form>
+{% endblock %}

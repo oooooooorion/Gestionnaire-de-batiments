@@ -1,0 +1,72 @@
+{
+  "adresse_complete": "55 Rue du Faubourg Saint-Honoré, 75008 Paris",
+  "batiments": [
+    {
+      "nom": "Palais de l'Élysée",
+      "boites": [
+        {
+          "numero": 2017,
+          "residents": [
+            "Macron",
+            "Trogneux"
+          ]
+        },
+        {
+          "numero": 2012,
+          "residents": [
+            "Hollande",
+            "Trierweiler",
+            "Massonneau",
+            "Gayet"
+          ]
+        },
+        {
+          "numero": 2007,
+          "residents": [
+            "Sarközy de Nagy-Bocsa",
+            "Ciganer",
+            "Martin",
+            "Bruni",
+            "Tedeschi"
+          ]
+        },
+        {
+          "numero": 1995,
+          "residents": [
+            "Chirac",
+            "Chodron de Courcel"
+          ]
+        },
+        {
+          "numero": 1981,
+          "residents": [
+            "Mitterrand",
+            "Gouze",
+            "Pingeot"
+          ]
+        },
+        {
+          "numero": 1974,
+          "residents": [
+            "Giscard d'Estaing",
+            "Sauvage de Brantes"
+          ]
+        },
+        {
+          "numero": 1969,
+          "residents": [
+            "Pompidou",
+            "Cahour"
+          ]
+        },
+        {
+          "numero": 1958,
+          "residents": [
+            "de Gaulle",
+            "Vendroux"
+          ]
+        }
+      ]
+    }
+  ]
+}

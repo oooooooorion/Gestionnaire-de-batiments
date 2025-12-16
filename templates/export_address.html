@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Exporter l'adresse - {{ super() }}{% endblock %}
+
+{% block content %}
+    <div class="toolbar">
+        <a href="{{ url_for('show_address', address_id=address_id) }}" class="button button-secondary">&larr; Retour à l'adresse</a>
+    </div>
+
+    <h2>Exporter l'adresse : {{ address_name }}</h2>
+
+    <form method="POST" action="{{ url_for('export_address', address_id=address_id) }}" class="card">
+        <div class="form-group">
+            <label>Trier l'export par :</label>
+            <div class="radio-group">
+                <label>
+                    <input type="radio" name="sort_order" value="batiment" checked>
+                    Ordre des bâtiments et numéros de boîtes
+                </label>
+                <label>
+                    <input type="radio" name="sort_order" value="alpha">
+                    Ordre alphabétique de tous les résidents
+                </label>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <a href="{{ url_for('show_address', address_id=address_id) }}" class="button button-secondary">Annuler</a>
+            <button type="submit" class="button button-primary">Générer l'export CSV</button>
+        </div>
+    </form>
+{% endblock %}

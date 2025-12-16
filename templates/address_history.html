@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Historique de l'adresse - {{ super() }}{% endblock %}
+
+{% block content %}
+    <div class="toolbar">
+        <a href="{{ url_for('show_address', address_id=address_id) }}" class="button button-secondary">&larr; Retour à l'adresse</a>
+    </div>
+
+    <h2>Historique pour : {{ address_name }}</h2>
+
+    {% if versions %}
+        <ul class="history-list">
+            {% for version in versions %}
+            <li class="history-item">
+                <span>Version du {{ version.display_time }}</span>
+                <form method="POST" action="{{ url_for('restore_version', address_id=address_id, version_id=version.filename) }}" style="display: inline;">
+                    <button type="submit" class="button button-small button-primary" onclick="return confirm('Êtes-vous sûr de vouloir restaurer cette version ? L\'état actuel sera sauvegardé, mais les données seront remplacées par cette version.');">Restaurer</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <div class="card empty-state">
+            <p>Aucun historique de modification n'a été trouvé pour cette adresse.</p>
+        </div>
+    {% endif %}
+
+{% endblock %}

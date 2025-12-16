@@ -1,0 +1,414 @@
+/* -- Variables de couleur inspirées de La Poste -- */
+:root {
+    --color-primary: #F1CB2A; /* Jaune "Golden Dream" */
+    --color-text: #3C3C3C;    /* Gris foncé "Mine Shaft" */
+    --color-background: #F9F9F9;
+    --color-white: #FFFFFF;
+    --color-border: #E0E0E0;
+    --font-family: 'Poppins', sans-serif;
+}
+
+/* -- Réinitialisation et base -- */
+body {
+    font-family: var(--font-family);
+    background-color: var(--color-background);
+    color: var(--color-text);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* -- En-tête -- */
+header {
+    background-color: var(--color-white);
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-primary);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* -- Contenu principal -- */
+main {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+h2 {
+    border-bottom: 2px solid var(--color-primary);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* -- Cartes et états -- */
+.card {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 3rem 1.5rem;
+}
+.empty-state p {
+    margin: 0.5rem 0;
+}
+
+/* -- Boutons -- */
+.button {
+    display: inline-block;
+    text-decoration: none;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    border: 1px solid transparent; /* Bordure transparente par défaut */
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, opacity 0.2s;
+    white-space: nowrap; /* Empêche le texte de passer à la ligne */
+    text-align: center;
+}
+
+.button-primary {
+    background-color: var(--color-primary);
+    color: var(--color-text);
+    border-color: var(--color-primary);
+}
+
+.button-primary:hover {
+    background-color: #e0b418; /* Une nuance légèrement plus foncée */
+    border-color: #e0b418;
+}
+
+.button-secondary {
+    background-color: var(--color-white);
+    color: var(--color-text);
+    border-color: var(--color-border);
+}
+
+.button-secondary:hover {
+    background-color: #f0f0f0; /* Léger changement de fond */
+    border-color: #d0d0d0;
+}
+
+/* Nouveau: bouton tertiaire pour les actions moins importantes (ex: modifier de boîte) */
+.button-tertiary {
+    background-color: transparent;
+    color: var(--color-text);
+    border-color: transparent;
+    text-decoration: underline; /* Indique une action cliquable */
+    padding: 0.25rem 0.5rem; /* Padding plus petit */
+    font-size: 0.9rem; /* Taille de police légèrement plus petite */
+}
+
+.button-tertiary:hover {
+    color: var(--color-primary); /* Met en évidence au survol */
+    text-decoration: none;
+}
+
+.button-danger {
+    background-color: #dc3545; /* Rouge plus standard pour danger */
+    color: var(--color-white);
+    border-color: #dc3545;
+}
+
+.button-danger:hover {
+    background-color: #c82333; /* Nuance plus foncée au survol */
+    border-color: #bd2130;
+}
+
+/* -- Petits boutons et toolbar interne -- */
+.button-small {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem; /* Légèrement ajusté */
+    border-radius: 6px; /* Bordure légèrement plus petite */
+}
+
+/* -- Listes (spécifiques pour l'index) -- */
+.address-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.address-list li a {
+    display: block;
+    background-color: var(--color-white);
+    padding: 1rem 1.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--color-text);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.address-list li a:hover {
+    border-color: var(--color-primary);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+
+/* -- Pied de page -- */
+footer {
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: #999;
+}
+
+/* -- Barre d'outils principales -- */
+.toolbar {
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.toolbar .button {
+    margin-top: 0;
+    margin-right: 0;
+}
+
+.toolbar .button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.toolbar .button-group form {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.toolbar .button-group form .button {
+    margin: 0;
+}
+
+/* -- Formulaires généraux -- */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+.form-group .form-help {
+    font-size: 0.9rem;
+    color: #666;
+    margin: -0.25rem 0 0.5rem 0;
+}
+textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+.form-actions {
+    margin-top: 1.5rem;
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.radio-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: normal;
+}
+.radio-group input[type="radio"] {
+    margin-right: 0.5rem;
+}
+
+/* -- Page de détail spécifique -- */
+.buildings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+.building-card h3 {
+    margin-top: 0;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 0.5rem;
+}
+
+.mailbox-list, .resident-list {
+    list-style: none;
+    padding-left: 0;
+}
+.mailbox-list > li {
+    margin-bottom: 1rem;
+    position: relative;
+    padding-right: 150px; /* Réserver de l'espace pour les boutons */
+}
+
+.mailbox-info-and-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mailbox-actions {
+    display: flex;
+    gap: 0.5rem;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+
+    opacity: 0;
+    pointer-events: none; /* Empêche les interactions quand masqué */
+    transition: opacity 0.2s ease-in-out;
+}
+
+.mailbox-list li:hover .mailbox-actions {
+    opacity: 1;
+    pointer-events: auto; /* Permet les interactions quand visible */
+}
+
+.mailbox-actions form {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.resident-list {
+    padding-left: 1rem;
+    font-size: 0.95rem;
+}
+.empty-state-small { font-style: italic; color: #888; font-size: 0.9rem; }
+.resident-list .empty-resident { color: #888; font-style: italic; }
+
+/* -- Petits boutons et toolbar interne -- */
+.button-small {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem; /* Légèrement ajusté */
+    border-radius: 6px; /* Bordure légèrement plus petite */
+}
+.toolbar-small {
+    display: flex;
+    justify-content: flex-start; /* Aligner au début et laisser le gap gérer l'espacement */
+    align-items: center;
+    margin-bottom: 1rem;
+    gap: 1rem; /* Espacement entre le titre et le groupe de boutons */
+    flex-wrap: wrap; /* Permet aux éléments de passer à la ligne */
+}
+.toolbar-small h3 {
+    flex-grow: 1; /* Permet au titre de prendre l'espace disponible */
+    margin-right: 1rem; /* Espacement entre le titre et les boutons */
+}
+
+/* Modifier le button-group spécifique à la toolbar-small pour mieux gérer ses enfants */
+.toolbar-small .button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    position: static; /* S'assurer qu'il n'est pas positionné de manière absolue */
+    padding-right: 0;
+}
+
+/* Actions spécifiques aux bâtiments */
+.building-card .toolbar-small .button-group {
+    position: relative;
+    padding-right: 0; /* Réinitialiser pour ne pas confliter avec .mailbox-list li */
+}
+
+.building-actions-on-hover {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.building-card:hover .building-actions-on-hover {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* S'assurer que les formulaires inline (pour les boutons de suppression) s'alignent bien */
+.building-actions-on-hover form {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.mailbox-list .button-group {
+    margin-top: 1rem;
+}
+hr {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: 1rem 0;
+}
+.no-mailbox-residents strong {
+    font-size: 0.9rem;
+}
+
+/* -- Alertes -- */
+.alert {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    border: 1px solid transparent;
+}
+.alert-danger {
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+}
+
+/* -- Historique -- */
+.history-list {
+    list-style: none;
+    padding: 0;
+}
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+}

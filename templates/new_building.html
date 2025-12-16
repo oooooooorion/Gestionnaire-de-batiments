@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Ajouter un bâtiment - {{ super() }}{% endblock %}
+
+{% block content %}
+    <h2>Ajouter un bâtiment</h2>
+    <p class="form-help">À l'adresse : {{ address_name }}</p>
+
+    <form method="POST" action="{{ url_for('new_building', address_id=address_id) }}" class="card">
+        <div class="form-group">
+            <label for="building_name">Nom ou identifiant du bâtiment</label>
+            <p class="form-help">Exemples : "A", "B", "Bâtiment principal", "Escalier 2"...</p>
+            <input type="text" id="building_name" name="building_name" required>
+        </div>
+
+        <div class="form-actions">
+            <a href="{{ url_for('show_address', address_id=address_id) }}" class="button button-secondary">Annuler</a>
+            <button type="submit" class="button button-primary">Ajouter le bâtiment</button>
+        </div>
+    </form>
+{% endblock %}

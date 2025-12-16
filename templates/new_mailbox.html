@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Ajouter une boîte aux lettres - {{ super() }}{% endblock %}
+
+{% block content %}
+    <div class="toolbar">
+        <a href="{{ url_for('show_address', address_id=address_id) }}" class="button button-secondary">&larr; Retour à l'adresse</a>
+    </div>
+
+    <h2>Ajouter une boîte aux lettres</h2>
+    <p class="form-help">Pour l'adresse : <strong>{{ address_name }}</strong>, bâtiment : <strong>{{ building_name }}</strong></p>
+
+    <form method="POST" action="{{ url_for('new_mailbox', address_id=address_id, building_name=building_name) }}" class="card">
+        <div class="form-group">
+            <label for="mailbox_number">Numéro de la boîte aux lettres</label>
+            <p class="form-help">Laissez ce champ vide si la boîte n'a pas de numéro.</p>
+            <input type="number" id="mailbox_number" name="mailbox_number" min="1">
+        </div>
+
+        <div class="form-group">
+            <label for="residents">Noms des résidents</label>
+            <p class="form-help">Un nom par ligne. Laissez vide si la boîte est inoccupée.</p>
+            <textarea id="residents" name="residents" rows="5"></textarea>
+        </div>
+
+        <div class="form-actions">
+            <a href="{{ url_for('show_address', address_id=address_id) }}" class="button button-secondary">Annuler</a>
+            <button type="submit" class="button button-primary">Ajouter la boîte</button>
+        </div>
+    </form>
+{% endblock %}

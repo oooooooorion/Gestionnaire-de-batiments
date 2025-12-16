@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Ajouter plusieurs boîtes - {{ super() }}{% endblock %}
+
+{% block content %}
+    <div class="toolbar">
+        <a href="{{ url_for('show_address', address_id=address_id) }}" class="button button-secondary">&larr; Retour à l'adresse</a>
+    </div>
+
+    <h2>Ajouter plusieurs boîtes</h2>
+    <p class="form-help">Pour l'adresse : <strong>{{ address_name }}</strong>, bâtiment : <strong>{{ building_name }}</strong></p>
+
+    <form method="POST" action="{{ url_for('bulk_add_mailboxes', address_id=address_id, building_name=building_name) }}" enctype="multipart/form-data" class="card">
+        
+        {# Afficher les erreurs s'il y en a #}
+        {% if error %}
+            <div class="alert alert-danger">{{ error }}</div>
+        {% endif %}
+
+        <h3>Méthode 1 : Copier-coller le texte</h3>
+        <div class="form-group">
+            <label for="bulk_text">Liste des boîtes et résidents</label>
+            <p class="form-help">Format : <code>Numéro: Résident 1, Résident 2</code> (une boîte par ligne). Laissez le numéro vide pour une boîte non numérotée.</p>
+            <textarea id="bulk_text" name="bulk_text" rows="10" placeholder="101: Dupont&#10;102: Martin, Durand&#10;: Petit, Garcia"></textarea>
+        </div>
+
+        <hr>
+
+        <h3>Méthode 2 : Importer un fichier CSV</h3>
+        <div class="form-group">
+            <label for="csv_file">Fichier CSV</label>
+            <p class="form-help">Le fichier doit contenir les colonnes <code>numero_boite</code> et <code>residents</code>.<br>
+            Dans la colonne <code>residents</code>, séparez les noms par des virgules. Si un nom contient une virgule, entourez le nom complet de guillemets doubles (ex: <code>"Famille Dupont, Martin"</code>).<br>
+            Exemple de format CSV :<br>
+            <code>numero_boite,residents</code><br>
+            <code>101,"Dupont"</code><br>
+            <code>,"Petit,Garcia"</code><br>
+            </p>
+            <input type="file" id="csv_file" name="csv_file" accept=".csv">
+        </div>
+
+        <div class="form-actions">
+            <a href="{{ url_for('show_address', address_id=address_id) }}" class="button button-secondary">Annuler</a>
+            <button type="submit" class="button button-primary">Ajouter les boîtes</button>
+        </div>
+    </form>
+{% endblock %}

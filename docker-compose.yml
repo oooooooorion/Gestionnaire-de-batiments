@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  web:
+    # Construire l'image à partir du Dockerfile dans le répertoire courant
+    build: .
+    # Redémarrer le conteneur automatiquement en cas de problème
+    restart: always
+    # Mapper le port 5000 de notre machine au port 5000 du conteneur
+    ports:
+      - "${HOST_PORT:-8080}:5000"
+    # Monter les répertoires locaux dans le conteneur pour le développement
+    # Toute modification sur les fichiers locaux sera immédiatement répercutée
+    # dans le conteneur, sans avoir à reconstruire l'image.
+    volumes:
+      - ./app.py:/app/app.py
+      - ./templates:/app/templates
+      - ./static:/app/static
+      - ./data:/app/data
+      - ./data_history:/app/data_history
