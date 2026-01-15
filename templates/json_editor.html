@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Éditer le JSON - {{ address_name }} - {{ super() }}{% endblock %}
+
+{% block content %}
+    <div class="toolbar">
+        <a href="{{ url_for('show_address', address_id=address_id) }}" class="button button-secondary">&larr; Retour à l'adresse</a>
+    </div>
+
+    <h2>Éditer le JSON brut pour : {{ address_name }}</h2>
+    
+    {% if error %}
+        <div class="alert alert-error" style="color: red; margin-bottom: 1rem; padding: 1rem; background-color: #fee; border: 1px solid #fcc; border-radius: 4px;">{{ error }}</div>
+    {% endif %}
+
+    <div class="card">
+        <form method="POST">
+            <div class="form-group">
+                <label for="json_content" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Contenu JSON</label>
+                <textarea name="json_content" id="json_content" rows="25" style="width: 100%; font-family: monospace; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;">{{ json_content }}</textarea>
+                <p class="help-text" style="margin-top: 0.5rem; color: #666; font-size: 0.9em;">Attention : Modifiez le JSON avec précaution. Une structure invalide peut causer des erreurs.</p>
+            </div>
+            
+            <div class="button-group" style="margin-top: 1rem;">
+                <button type="submit" class="button button-primary">Sauvegarder</button>
+                <a href="{{ url_for('show_address', address_id=address_id) }}" class="button button-secondary">Annuler</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}

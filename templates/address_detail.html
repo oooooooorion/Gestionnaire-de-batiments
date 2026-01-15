@@ -8,6 +8,7 @@
         <div class="button-group">
             <a href="{{ url_for('new_building', address_id=address_id) }}" class="button button-primary">Ajouter un bâtiment</a>
             <a href="{{ url_for('edit_address', address_id=address_id) }}" class="button button-secondary">Modifier l'adresse</a>
+            <a href="{{ url_for('edit_address_json', address_id=address_id) }}" class="button button-secondary">JSON</a>
             <a href="{{ url_for('export_address', address_id=address_id) }}" class="button button-primary">Exporter</a>
             <a href="{{ url_for('address_history', address_id=address_id) }}" class="button button-secondary">Historique</a>
             <form action="{{ url_for('delete_address', address_id=address_id) }}" method="POST" style="display:inline;">

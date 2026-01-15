@@ -1,0 +1,40 @@
+{
+  "adresse_complete": "123 Rue de l'Exemple, 75001 Paris",
+  "batiments": [
+    {
+      "nom": "Bâtiment A",
+      "boites": [
+        {
+          "numero": 1,
+          "residents": [
+            "Alice Dupont",
+            "Bob Martin"
+          ]
+        },
+        {
+          "numero": 2,
+          "residents": [
+            "Charlie Durand"
+          ]
+        }
+      ]
+    },
+    {
+      "nom": "Bâtiment B",
+      "boites": [
+        {
+          "numero": 101,
+          "residents": [
+            "Eve Leroi"
+          ]
+        },
+        {
+          "numero": null,
+          "residents": [
+            "Résident sans numéro"
+          ]
+        }
+      ]
+    }
+  ]
+}

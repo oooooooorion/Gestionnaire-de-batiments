@@ -626,6 +626,45 @@ def address_history(address_id):
                            address_name=address_data.get('adresse_complete'), versions=versions)
 
 
+@app.route('/address/<address_id>/json', methods=['GET', 'POST'])
+def edit_address_json(address_id):
+    """Gère l'affichage et la modification directe du JSON d'une adresse."""
+    filepath = os.path.join(DATA_DIR, f"{address_id}.json")
+    if not os.path.exists(filepath):
+        abort(404)
+
+    with open(filepath, 'r', encoding='utf-8') as f:
+        # On lit le fichier brut pour le mettre dans le textarea
+        try:
+            data = json.load(f)
+            json_content = json.dumps(data, ensure_ascii=False, indent=2)
+            address_name = data.get('adresse_complete', 'Adresse inconnue')
+        except json.JSONDecodeError:
+            # En cas de fichier corrompu, on essaie de lire le texte brut
+            f.seek(0)
+            json_content = f.read()
+            address_name = address_id
+
+    if request.method == 'POST':
+        new_json_content = request.form.get('json_content')
+        
+        try:
+            # Valider le JSON
+            new_data = json.loads(new_json_content)
+            
+            # On utilise _write_data pour sauvegarder avec historique
+            _write_data(filepath, new_data)
+            
+            return redirect(url_for('show_address', address_id=address_id))
+            
+        except json.JSONDecodeError as e:
+            return render_template('json_editor.html', address_id=address_id, address_name=address_name,
+                                   json_content=new_json_content, error=f"Erreur de syntaxe JSON : {str(e)}")
+
+    return render_template('json_editor.html', address_id=address_id, address_name=address_name, json_content=json_content)
+
+
+
 @app.route('/address/<address_id>/restore/<version_id>', methods=['POST'])
 def restore_version(address_id, version_id):
     """Restaure une version spécifique d'une adresse."""
