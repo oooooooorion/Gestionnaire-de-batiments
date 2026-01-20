@@ -12,6 +12,8 @@ enjoy! entièrement vibe codé
 3.  Lancer la commande : `docker compose up --build`
 4.  Ouvrir un navigateur et se rendre à l'adresse : `http://127.0.0.1:8080`.
 
+Pour éteindre l'outil : ```docker compose down```
+
 ### Sans Docker (Python direct)
 
 **Pré-requis :** Python 3.x installé.
@@ -32,4 +34,9 @@ enjoy! entièrement vibe codé
     ```
 5.  Ouvrir un navigateur et se rendre à l'adresse : `http://127.0.0.1:8080`
 
-Pour arrêter l'application, retourner au terminal et faire `Ctrl+C`.# Gestionnaire-de-batiments
+Pour arrêter l'application, retourner au terminal et faire `Ctrl+C`
+
+## Notice détaillée
+
+Une notice détaillée est fournie dans le fichier [notice.md](notice.md).
+

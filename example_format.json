@@ -7,14 +7,14 @@
         {
           "numero": 1,
           "residents": [
-            "Alice Dupont",
-            "Bob Martin"
+            "DUPONT Alice",
+            "MARTIN Bob"
           ]
         },
         {
           "numero": 2,
           "residents": [
-            "Charlie Durand"
+            "DURAND Charlie"
           ]
         }
       ]
@@ -25,7 +25,7 @@
         {
           "numero": 101,
           "residents": [
-            "Eve Leroi"
+            "LEROI Eve"
           ]
         },
         {
